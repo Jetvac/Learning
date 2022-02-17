@@ -2,31 +2,31 @@
 CREATE TABLE [WeekDay]
 (
 	WeekDayID INT PRIMARY KEY IDENTITY (0, 1),
-	WeekDayName NVARCHAR(20) NOT NULL
+	WeekDayName NVARCHAR (20) NOT NULL
 )
 
 -- Таблица Пол
 CREATE TABLE [Gender]
 (
 	GenderID INT PRIMARY KEY IDENTITY (0, 1),
-	GenderName NVARCHAR(25) NOT NULL
+	GenderName NVARCHAR (25) NOT NULL
 )
 
 -- Таблица Должность
 CREATE TABLE [Post]
 (
 	PostID INT PRIMARY KEY IDENTITY (0, 1),
-	PostName NVARCHAR(25) NOT NULL
+	PostName NVARCHAR (25) NOT NULL
 )
 
 -- Таблица Сотрудник
 CREATE TABLE [Employee]
 (
 	EmployeeID INT PRIMARY KEY IDENTITY (0, 1),
-	EmployeeFullname NVARCHAR(MAX) NOT NULL,
+	EmployeeFullname NVARCHAR (MAX) NOT NULL,
 	EmployeeBirthdate DATE NOT NULL,
-	EmployeePhoneNumber NVARCHAR(30) NOT NULL,
-	EmployeeEmail NVARCHAR(30) NOT NULL,
+	EmployeePhoneNumber NVARCHAR (30) NOT NULL,
+	EmployeeEmail NVARCHAR (30) NOT NULL,
 	GenderID INT FOREIGN KEY REFERENCES Gender (GenderID) NOT NULL,
 	PostID INT FOREIGN KEY REFERENCES Post (PostID) NOT NULL
 )
@@ -35,7 +35,7 @@ CREATE TABLE [Employee]
 CREATE TABLE [StudyClass]
 (
 	StudyClassID INT PRIMARY KEY IDENTITY (0, 1),
-	StudyClassNumber NVARCHAR(5) NOT NULL,
+	StudyClassNumber NVARCHAR (5) NOT NULL,
 	EmployeeID INT FOREIGN KEY REFERENCES Employee (EmployeeID) NOT NULL,
 )
 
