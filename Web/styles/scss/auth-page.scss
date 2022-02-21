@@ -103,5 +103,14 @@ body, html {
         border-radius: 30px;
         color: #FFFFFF;
         font-weight: bold;
+        cursor: pointer;
+        transition: all .3s;
+
+        &:hover {
+            filter: opacity(.85);
+        }
+        &:active {
+            filter: #091F8E;
+        }
     }
 }

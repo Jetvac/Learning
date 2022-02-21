@@ -140,4 +140,17 @@ body, html {
   border-radius: 30px;
   color: #FFFFFF;
   font-weight: bold;
+  cursor: pointer;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.user-data__submit:hover {
+  -webkit-filter: opacity(0.85);
+          filter: opacity(0.85);
+}
+
+.user-data__submit:active {
+  -webkit-filter: #091F8E;
+          filter: #091F8E;
 }
