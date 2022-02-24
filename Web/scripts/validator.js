@@ -4,7 +4,7 @@ function isNumber (str)
     return (+str !== NaN);
 }
 
-// Проверка даты на соответствие маске dd.mm.yyyy
+// Проверка формата даты
 function dateFormatCheck (date) 
 {
     return isNaN(Date.parse(date));
