@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/css/auth-page.css" type="text/css">
+    <script src="./scripts/jquery-3.6.0.min.js"></script>
+    <script src="./scripts/authorization.js" type="module"></script>
     <title>Document</title>
 </head>
     <body class="body">
@@ -16,15 +18,15 @@
                     <form class="user-data" method="LINK" action="main-menu.html">
                         <div class="user-data__input-form">
                             <p class="user-data__login-title user-data__title">Логин</p>
-                            <input class="user-data__login-input user-data__input" type="text" required placeholder="username">
+                            <input class="user-data__login-input user-data__input" id="login" type="text" required placeholder="username">
                         </div>
 
                         <div class="user-data__input-form">
                             <p class="user-data__password-title user-data__title">Пароль</p>
-                            <input class="user-data__password-input user-data__input" type="password" required placeholder="********">
+                            <input class="user-data__password-input user-data__input" id="password" type="password" required placeholder="********">
                         </div>
 
-                        <button class="user-data__submit" type="submit">Войти</button>
+                        <button class="user-data__submit" id="login-button" type="submit">Войти</button>
                     </form>
 
                     <div class="auth-panel__signup">Ещё нет аккаунта? <a class="auth-panel__signup-ref" href="#">Зарегистрироваться</a></div>

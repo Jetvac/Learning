@@ -96,7 +96,6 @@ C:\web\Learning\API\API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenI
 C:\web\Learning\API\API\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\web\Learning\API\API\bin\Debug\net6.0\Microsoft.OpenApi.dll
 C:\web\Learning\API\API\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
-C:\web\Learning\API\API\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\web\Learning\API\API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\web\Learning\API\API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\web\Learning\API\API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -110,13 +109,9 @@ C:\web\Learning\API\API\bin\Debug\net6.0\System.Windows.Extensions.dll
 C:\web\Learning\API\API\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\web\Learning\API\API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\web\Learning\API\API\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
-C:\web\Learning\API\API\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\web\Learning\API\API\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\web\Learning\API\API\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\web\Learning\API\API\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\web\Learning\API\API\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\web\Learning\API\API\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\web\Learning\API\API\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\web\Learning\API\API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
 C:\web\Learning\API\API\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\web\Learning\API\API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
@@ -128,3 +123,4 @@ C:\web\Learning\API\API\obj\Debug\net6.0\staticwebassets.development.json
 C:\web\Learning\API\API\obj\Debug\net6.0\scopedcss\bundle\API.styles.css
 C:\web\Learning\API\API\obj\Debug\net6.0\API.csproj.CopyComplete
 C:\web\Learning\API\API\obj\Debug\net6.0\API.genruntimeconfig.cache
+C:\web\Learning\API\API\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
