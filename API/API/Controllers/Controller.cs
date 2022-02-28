@@ -46,6 +46,18 @@ namespace API.Controllers
             // Получение токена пользователя
             string token = Security.GetToken(login, password);
 
+            // Занесение токена и логина пользователя в cookie (хранятся две недели)
+            this.Response.Cookies.Append("token", token, new CookieOptions()
+            {
+                Expires = DateTime.Now.AddDays(14),
+                Secure = true,
+            });
+            this.Response.Cookies.Append("login", login, new CookieOptions()
+            {
+                Expires = DateTime.Now.AddDays(14),
+            });
+
+
             return token;
         }
 
@@ -65,14 +77,7 @@ namespace API.Controllers
         [HttpGet("GetJQuery")]
         public ContentResult GetJQuery()
         {
-            string JS = System.IO.File.ReadAllText(@"../../web/scripts/jquery-3.6.0.min.js");
-
-            return new ContentResult()
-            {
-                ContentType = "text/js",
-                Content = JS,
-
-            };
+            return FileRequester.GetFile(@"../../web/scripts/jquery-3.6.0.min.js", "text/js");
         }
         #region Страница Авторизации
         /// <summary>
@@ -82,13 +87,11 @@ namespace API.Controllers
         [HttpGet("Authorization")]
         public ContentResult Authorization()
         {
-            string HTML = System.IO.File.ReadAllText(@"../../web/index.html");
-
-            return new ContentResult()
-            {
-                ContentType = "text/html",
-                Content = HTML,
-            };
+            //if (Security.CheckToken(this.Request.Cookies))
+            //{
+            //    return this.Courses();
+            //}
+            return FileRequester.GetFile(@"../../web/index.html", "text/html");
         }
         /// <summary>
         /// Получение файла стилей страницы Авторизации
@@ -97,14 +100,7 @@ namespace API.Controllers
         [HttpGet("GetAuthStyle")]
         public ContentResult GetAuthStyle()
         {
-            string CSS = System.IO.File.ReadAllText(@"../../web/styles/css/auth-page.css");
-
-            return new ContentResult()
-            {
-                ContentType = "text/css",
-                Content = CSS,
-
-            };
+            return FileRequester.GetFile(@"../../web/styles/css/auth-page.css", "text/css");
         }
         /// <summary>
         /// Получение файла скриптов страницы Авторизации
@@ -113,14 +109,20 @@ namespace API.Controllers
         [HttpGet("GetAuthScript")]
         public ContentResult GetAuthScript()
         {
-            string JS = System.IO.File.ReadAllText(@"../../web/scripts/authorization.js");
-
-            return new ContentResult()
+            return FileRequester.GetFile(@"../../web/scripts/authorization.js", "text/js");
+        }
+        #endregion
+        #region Страница Просмотра пройденных курсов
+        [HttpGet("Courses")]
+        public ContentResult Courses()
+        {
+            // Если в cookie нет ключей для токена и логина или токен не соответствует пользователю, то возвращаемся на страницу авторизации
+            if (!Security.CheckToken(this.Request.Cookies))
             {
-                ContentType = "text/js",
-                Content = JS,
+                return this.Authorization();
+            }
 
-            };
+            return FileRequester.GetFile(@"../../web/main-menu.html", "text/html");
         }
         #endregion
         #endregion

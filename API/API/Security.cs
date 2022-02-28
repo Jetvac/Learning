@@ -1,4 +1,6 @@
-﻿namespace API
+﻿using API.Models;
+
+namespace API
 {
     public static class Security
     {
@@ -26,6 +28,32 @@
 
             return hash;
         }
+        public static string GetToken (string login, string password)
+        {
+            return GetHash($"{login}{password}", 128);
+        }
+        public static bool CheckToken(User user, string token)
+        {
+            return GetToken(user.Login, user.Password) == token;
+        }
+        public static bool CheckToken (IRequestCookieCollection cookie)
+        {
+            string token = "";
+            string login = "";
+            User? user = null;
+            if (cookie.ContainsKey("token") && cookie.ContainsKey("login"))
+            {
+                token = cookie["token"] ?? "";
+                login = cookie["login"] ?? "";
 
+                user = new LearningContext().Users.Where(u => u.Login == login).FirstOrDefault();
+            }
+            else
+            {
+                return false;
+            }
+
+            return user != null && CheckToken(user, token);
+        }
     }
 }
