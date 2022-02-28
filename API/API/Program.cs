@@ -23,6 +23,8 @@ builder.Services.AddMvc().AddRazorPagesOptions(options => {
 
 var app = builder.Build();
 
+app.UseStaticFiles();
+
 app.UseCors(builder => builder
    .AllowAnyOrigin()
    .AllowAnyMethod()

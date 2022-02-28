@@ -21,22 +21,14 @@ namespace API.Controllers
         /// Авторизация пользователя
         /// </summary>
         /// <returns>Токен пользователя</returns>
-        [HttpPost("Authorization")]
-        public string Authorization()
+        [HttpPost("Auth")]
+        public string Auth()
         {
             string login = "";
             string password = "";
-            // Тело запроса
-            string request = "";
-
-            // Чтение данных из потока
-            using (StreamReader reader = new StreamReader(this.Request.Body, Encoding.UTF8, true, 1024, true))
-            {
-                request += reader.ReadToEndAsync().Result ?? "";
-            }
 
             // Данные запроса
-            string[] requestBody = request.Split('\n');
+            string[] requestBody = RequestReader.GetData(this.Request.Body).ToArray();
 
             // Если передано два значения, то присваиваем логин и пароль
             if (requestBody.Length == 2)
@@ -46,23 +38,91 @@ namespace API.Controllers
             }
 
             // Если пользователя с переданными параметрами не существует, то возвращаем токен — пустую строку
-            this.context.Users.ToList();
-            if (this.context.Users.FirstOrDefault(u => u.Login == login && u.Password == password) == null) 
-            { 
+            if (this.context.Users.FirstOrDefault(u => u.Login == login && u.Password == password) == null)
+            {
                 return "";
             }
 
             // Получение токена пользователя
-            string token = Security.GetHash($"{login}{password}", 128);
+            string token = Security.GetToken(login, password);
 
             return token;
         }
-        [HttpGet("GetCompletedCourses")]
+
+        [HttpPost("GetCompletedCourses")]
         public List<CompletedCourse> GetCompletedCourses(int employeeID)
         {
             List<CompletedCourse> completedCourses = this.context.CompletedCourses.Where(c => c.EmployeeId == employeeID).ToList();
 
             return completedCourses;
         }
+
+        #region Файлы сайта
+        /// <summary>
+        /// Получение файла скрипта библиотеки JQuery
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetJQuery")]
+        public ContentResult GetJQuery()
+        {
+            string JS = System.IO.File.ReadAllText(@"../../web/scripts/jquery-3.6.0.min.js");
+
+            return new ContentResult()
+            {
+                ContentType = "text/js",
+                Content = JS,
+
+            };
+        }
+        #region Страница Авторизации
+        /// <summary>
+        /// Получение HTML файла страницы Авторизации
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("Authorization")]
+        public ContentResult Authorization()
+        {
+            string HTML = System.IO.File.ReadAllText(@"../../web/index.html");
+
+            return new ContentResult()
+            {
+                ContentType = "text/html",
+                Content = HTML,
+            };
+        }
+        /// <summary>
+        /// Получение файла стилей страницы Авторизации
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetAuthStyle")]
+        public ContentResult GetAuthStyle()
+        {
+            string CSS = System.IO.File.ReadAllText(@"../../web/styles/css/auth-page.css");
+
+            return new ContentResult()
+            {
+                ContentType = "text/css",
+                Content = CSS,
+
+            };
+        }
+        /// <summary>
+        /// Получение файла скриптов страницы Авторизации
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetAuthScript")]
+        public ContentResult GetAuthScript()
+        {
+            string JS = System.IO.File.ReadAllText(@"../../web/scripts/authorization.js");
+
+            return new ContentResult()
+            {
+                ContentType = "text/js",
+                Content = JS,
+
+            };
+        }
+        #endregion
+        #endregion
     }
 }
