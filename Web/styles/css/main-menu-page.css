@@ -138,11 +138,16 @@ body, html {
 }
 
 .active-place__tab {
+  overflow: auto;
   display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.active-place__tab ::-webkit-scrollbar {
+  display: none;
 }
 
 .course-list {
@@ -161,7 +166,11 @@ body, html {
       -ms-flex-pack: center;
           justify-content: center;
   padding: 50px 100px;
-  gap: 15px;
+  gap: 50px;
+}
+
+.course-list ::-webkit-scrollbar {
+  display: none;
 }
 
 .course-item {

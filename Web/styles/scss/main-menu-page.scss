@@ -102,8 +102,13 @@ body, html {
 }
 
 .active-place__tab {
+    overflow: auto;
     display: none;
     flex-direction: column;
+
+    ::-webkit-scrollbar {
+        display:  none;
+    }
 }
 
 .course-list {
@@ -113,7 +118,11 @@ body, html {
     align-items: center;
     justify-content: center;
     padding: 50px 100px;
-    gap: 15px;
+    gap: 50px;
+
+    ::-webkit-scrollbar {
+        display:  none;
+    }
 }
 
 .course-item {
