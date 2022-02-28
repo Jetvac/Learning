@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-
-#nullable disable
 
 namespace API.Models
 {
@@ -17,23 +16,22 @@ namespace API.Models
         {
         }
 
-        public virtual DbSet<ClassRoom> ClassRooms { get; set; }
-        public virtual DbSet<CompletedCourse> CompletedCourses { get; set; }
-        public virtual DbSet<Course> Courses { get; set; }
-        public virtual DbSet<CourseTheme> CourseThemes { get; set; }
-        public virtual DbSet<Discipline> Disciplines { get; set; }
-        public virtual DbSet<EducationOrganisation> EducationOrganisations { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<EmployeeDiscipline> EmployeeDisciplines { get; set; }
-        public virtual DbSet<Gender> Genders { get; set; }
-        public virtual DbSet<Post> Posts { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<Schedule> Schedules { get; set; }
-        public virtual DbSet<ScheduleDiscipline> ScheduleDisciplines { get; set; }
-        public virtual DbSet<StudentList> StudentLists { get; set; }
-        public virtual DbSet<StudyClass> StudyClasses { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<WeekDay> WeekDays { get; set; }
+        public virtual DbSet<ClassRoom> ClassRooms { get; set; } = null!;
+        public virtual DbSet<CompletedCourse> CompletedCourses { get; set; } = null!;
+        public virtual DbSet<Course> Courses { get; set; } = null!;
+        public virtual DbSet<CourseTheme> CourseThemes { get; set; } = null!;
+        public virtual DbSet<Discipline> Disciplines { get; set; } = null!;
+        public virtual DbSet<EducationOrganisation> EducationOrganisations { get; set; } = null!;
+        public virtual DbSet<Employee> Employees { get; set; } = null!;
+        public virtual DbSet<EmployeeDiscipline> EmployeeDisciplines { get; set; } = null!;
+        public virtual DbSet<Gender> Genders { get; set; } = null!;
+        public virtual DbSet<Post> Posts { get; set; } = null!;
+        public virtual DbSet<Role> Roles { get; set; } = null!;
+        public virtual DbSet<Schedule> Schedules { get; set; } = null!;
+        public virtual DbSet<ScheduleDiscipline> ScheduleDisciplines { get; set; } = null!;
+        public virtual DbSet<StudyClass> StudyClasses { get; set; } = null!;
+        public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<WeekDay> WeekDays { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -54,9 +52,7 @@ namespace API.Models
                     .ValueGeneratedNever()
                     .HasColumnName("ClassRoomID");
 
-                entity.Property(e => e.ClassRoomNumber)
-                    .IsRequired()
-                    .HasMaxLength(10);
+                entity.Property(e => e.ClassRoomNumber).HasMaxLength(10);
             });
 
             modelBuilder.Entity<CompletedCourse>(entity =>
@@ -69,13 +65,16 @@ namespace API.Models
 
                 entity.Property(e => e.CourseId).HasColumnName("CourseID");
 
-                entity.Property(e => e.Certificate).IsRequired();
-
                 entity.Property(e => e.CourseEndDate).HasColumnType("date");
 
-                entity.Property(e => e.CourseName).IsRequired();
-
                 entity.Property(e => e.CourseStartDate).HasColumnType("date");
+
+                entity.Property(e => e.EducationOrganisationId).HasColumnName("EducationOrganisationID");
+
+                entity.HasOne(d => d.EducationOrganisation)
+                    .WithMany(p => p.CompletedCourses)
+                    .HasForeignKey(d => d.EducationOrganisationId)
+                    .HasConstraintName("FK_CompletedCourse_EducationOrganisation");
 
                 entity.HasOne(d => d.Employee)
                     .WithMany(p => p.CompletedCourses)
@@ -96,8 +95,6 @@ namespace API.Models
 
                 entity.Property(e => e.CourseEndDate).HasColumnType("date");
 
-                entity.Property(e => e.CourseName).IsRequired();
-
                 entity.Property(e => e.CourseStartDate).HasColumnType("date");
 
                 entity.HasOne(d => d.EducationOrganisation)
@@ -105,6 +102,25 @@ namespace API.Models
                     .HasForeignKey(d => d.EducationOrganisationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Course_EducationOrganisation");
+
+                entity.HasMany(d => d.Employees)
+                    .WithMany(p => p.Courses)
+                    .UsingEntity<Dictionary<string, object>>(
+                        "StudentList",
+                        l => l.HasOne<Employee>().WithMany().HasForeignKey("EmployeeId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_StudentList_Employee"),
+                        r => r.HasOne<Course>().WithMany().HasForeignKey("CourseId", "EducationOrganisationId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_StudentList_Course"),
+                        j =>
+                        {
+                            j.HasKey("CourseId", "EmployeeId", "EducationOrganisationId");
+
+                            j.ToTable("StudentList");
+
+                            j.IndexerProperty<int>("CourseId").HasColumnName("CourseID");
+
+                            j.IndexerProperty<int>("EmployeeId").HasColumnName("EmployeeID");
+
+                            j.IndexerProperty<int>("EducationOrganisationId").HasColumnName("EducationOrganisationID");
+                        });
             });
 
             modelBuilder.Entity<CourseTheme>(entity =>
@@ -121,9 +137,7 @@ namespace API.Models
 
                 entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
 
-                entity.Property(e => e.Theme)
-                    .IsRequired()
-                    .HasMaxLength(100);
+                entity.Property(e => e.Theme).HasMaxLength(100);
 
                 entity.HasOne(d => d.Course)
                     .WithMany(p => p.CourseThemes)
@@ -138,9 +152,7 @@ namespace API.Models
 
                 entity.Property(e => e.DisciplineId).HasColumnName("DisciplineID");
 
-                entity.Property(e => e.DisciplineName)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                entity.Property(e => e.DisciplineName).HasMaxLength(50);
             });
 
             modelBuilder.Entity<EducationOrganisation>(entity =>
@@ -150,8 +162,6 @@ namespace API.Models
                 entity.Property(e => e.EducationOrganisationId)
                     .ValueGeneratedNever()
                     .HasColumnName("EducationOrganisationID");
-
-                entity.Property(e => e.EducationOrganisationName).IsRequired();
             });
 
             modelBuilder.Entity<Employee>(entity =>
@@ -164,15 +174,9 @@ namespace API.Models
 
                 entity.Property(e => e.EmployeeBirthdate).HasColumnType("date");
 
-                entity.Property(e => e.EmployeeEmail)
-                    .IsRequired()
-                    .HasMaxLength(30);
+                entity.Property(e => e.EmployeeEmail).HasMaxLength(30);
 
-                entity.Property(e => e.EmployeeFullname).IsRequired();
-
-                entity.Property(e => e.EmployeePhoneNumber)
-                    .IsRequired()
-                    .HasMaxLength(30);
+                entity.Property(e => e.EmployeePhoneNumber).HasMaxLength(30);
 
                 entity.Property(e => e.GenderId).HasColumnName("GenderID");
 
@@ -224,9 +228,7 @@ namespace API.Models
 
                 entity.Property(e => e.GenderId).HasColumnName("GenderID");
 
-                entity.Property(e => e.GenderName)
-                    .IsRequired()
-                    .HasMaxLength(25);
+                entity.Property(e => e.GenderName).HasMaxLength(25);
             });
 
             modelBuilder.Entity<Post>(entity =>
@@ -235,9 +237,7 @@ namespace API.Models
 
                 entity.Property(e => e.PostId).HasColumnName("PostID");
 
-                entity.Property(e => e.PostName)
-                    .IsRequired()
-                    .HasMaxLength(25);
+                entity.Property(e => e.PostName).HasMaxLength(25);
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -248,9 +248,7 @@ namespace API.Models
                     .ValueGeneratedNever()
                     .HasColumnName("RoleID");
 
-                entity.Property(e => e.RoleName)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                entity.Property(e => e.RoleName).HasMaxLength(50);
             });
 
             modelBuilder.Entity<Schedule>(entity =>
@@ -313,31 +311,6 @@ namespace API.Models
                     .HasConstraintName("FK_ScheduleDiscipline_Schedule");
             });
 
-            modelBuilder.Entity<StudentList>(entity =>
-            {
-                entity.HasKey(e => new { e.CourseId, e.EmployeeId, e.EducationOrganisationId });
-
-                entity.ToTable("StudentList");
-
-                entity.Property(e => e.CourseId).HasColumnName("CourseID");
-
-                entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
-
-                entity.Property(e => e.EducationOrganisationId).HasColumnName("EducationOrganisationID");
-
-                entity.HasOne(d => d.Employee)
-                    .WithMany(p => p.StudentLists)
-                    .HasForeignKey(d => d.EmployeeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_StudentList_Employee");
-
-                entity.HasOne(d => d.Course)
-                    .WithMany(p => p.StudentLists)
-                    .HasForeignKey(d => new { d.CourseId, d.EducationOrganisationId })
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_StudentList_Course");
-            });
-
             modelBuilder.Entity<StudyClass>(entity =>
             {
                 entity.ToTable("StudyClass");
@@ -346,9 +319,7 @@ namespace API.Models
 
                 entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
 
-                entity.Property(e => e.StudyClassNumber)
-                    .IsRequired()
-                    .HasMaxLength(5);
+                entity.Property(e => e.StudyClassNumber).HasMaxLength(5);
 
                 entity.HasOne(d => d.Employee)
                     .WithMany(p => p.StudyClasses)
@@ -367,13 +338,9 @@ namespace API.Models
                     .ValueGeneratedNever()
                     .HasColumnName("EmployeeID");
 
-                entity.Property(e => e.Login)
-                    .IsRequired()
-                    .HasMaxLength(25);
+                entity.Property(e => e.Login).HasMaxLength(25);
 
-                entity.Property(e => e.Password)
-                    .IsRequired()
-                    .HasMaxLength(128);
+                entity.Property(e => e.Password).HasMaxLength(128);
 
                 entity.Property(e => e.RoleId).HasColumnName("RoleID");
 
@@ -396,9 +363,7 @@ namespace API.Models
 
                 entity.Property(e => e.WeekDayId).HasColumnName("WeekDayID");
 
-                entity.Property(e => e.WeekDayName)
-                    .IsRequired()
-                    .HasMaxLength(20);
+                entity.Property(e => e.WeekDayName).HasMaxLength(20);
             });
 
             OnModelCreatingPartial(modelBuilder);

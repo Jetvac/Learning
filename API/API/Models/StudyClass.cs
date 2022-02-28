@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
 namespace API.Models
 {
     public partial class StudyClass
@@ -13,10 +11,10 @@ namespace API.Models
         }
 
         public int StudyClassId { get; set; }
-        public string StudyClassNumber { get; set; }
+        public string StudyClassNumber { get; set; } = null!;
         public int EmployeeId { get; set; }
 
-        public virtual Employee Employee { get; set; }
+        public virtual Employee Employee { get; set; } = null!;
         public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }

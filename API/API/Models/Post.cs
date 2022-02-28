@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
 namespace API.Models
 {
     public partial class Post
@@ -13,7 +11,7 @@ namespace API.Models
         }
 
         public int PostId { get; set; }
-        public string PostName { get; set; }
+        public string PostName { get; set; } = null!;
 
         public virtual ICollection<Employee> Employees { get; set; }
     }

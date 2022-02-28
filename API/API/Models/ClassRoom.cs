@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
 namespace API.Models
 {
     public partial class ClassRoom
@@ -13,7 +11,7 @@ namespace API.Models
         }
 
         public int ClassRoomId { get; set; }
-        public string ClassRoomNumber { get; set; }
+        public string ClassRoomNumber { get; set; } = null!;
 
         public virtual ICollection<ScheduleDiscipline> ScheduleDisciplines { get; set; }
     }

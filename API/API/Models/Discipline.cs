@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
 namespace API.Models
 {
     public partial class Discipline
@@ -14,7 +12,7 @@ namespace API.Models
         }
 
         public int DisciplineId { get; set; }
-        public string DisciplineName { get; set; }
+        public string DisciplineName { get; set; } = null!;
         public int? WeeklyLoad { get; set; }
 
         public virtual ICollection<EmployeeDiscipline> EmployeeDisciplines { get; set; }

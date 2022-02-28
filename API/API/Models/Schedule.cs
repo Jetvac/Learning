@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
 namespace API.Models
 {
     public partial class Schedule
@@ -17,8 +15,8 @@ namespace API.Models
         public DateTime ScheduleDate { get; set; }
         public int ScheduleId { get; set; }
 
-        public virtual StudyClass StudyClass { get; set; }
-        public virtual WeekDay WeekDay { get; set; }
+        public virtual StudyClass StudyClass { get; set; } = null!;
+        public virtual WeekDay WeekDay { get; set; } = null!;
         public virtual ICollection<ScheduleDiscipline> ScheduleDisciplines { get; set; }
     }
 }

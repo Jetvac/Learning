@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
 namespace API.Models
 {
     public partial class WeekDay
@@ -13,7 +11,7 @@ namespace API.Models
         }
 
         public int WeekDayId { get; set; }
-        public string WeekDayName { get; set; }
+        public string WeekDayName { get; set; } = null!;
 
         public virtual ICollection<Schedule> Schedules { get; set; }
     }

@@ -21,14 +21,6 @@ $(document).ready(function () {
                 } else {
                     alert(response);
                     document.location.href = `${IP}/courses`
-                    // $.ajax({
-                    //     url: `${IP}/courses`,
-                    //     type: `GET`,
-                    //     contentType: 'application/text; charset=utf-8',
-                    //     success: function (response) {
-
-                    //     }
-                    // })
                 }
 
                 // Очистка поля ввода пароля

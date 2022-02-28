@@ -61,10 +61,20 @@ namespace API.Controllers
             return token;
         }
 
-        [HttpPost("GetCompletedCourses")]
-        public List<CompletedCourse> GetCompletedCourses(int employeeID)
+        [HttpGet("GetCompletedCourses")]
+        public List<CompletedCourse> GetCompletedCourses()
         {
-            List<CompletedCourse> completedCourses = this.context.CompletedCourses.Where(c => c.EmployeeId == employeeID).ToList();
+            // Проверка авторизованности пользователя
+            if (!Security.CheckToken(this.Request.Cookies))
+            {
+                return new List<CompletedCourse>();
+            }
+
+            string login = this.Request.Cookies["login"] ?? "";
+
+            User user = this.context.Users.Where(u => u.Login == login).First();
+
+            List<CompletedCourse> completedCourses = this.context.CompletedCourses.Where(c => c.EmployeeId == user.EmployeeId).ToList();
 
             return completedCourses;
         }
@@ -87,10 +97,10 @@ namespace API.Controllers
         [HttpGet("Authorization")]
         public ContentResult Authorization()
         {
-            //if (Security.CheckToken(this.Request.Cookies))
-            //{
-            //    return this.Courses();
-            //}
+            if (Security.CheckToken(this.Request.Cookies))
+            {
+                return this.Courses();
+            }
             return FileRequester.GetFile(@"../../web/index.html", "text/html");
         }
         /// <summary>
@@ -113,6 +123,10 @@ namespace API.Controllers
         }
         #endregion
         #region Страница Просмотра пройденных курсов
+        /// <summary>
+        /// Получение HTML файла страницы Просмотра пройденных курсов
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("Courses")]
         public ContentResult Courses()
         {
@@ -123,6 +137,21 @@ namespace API.Controllers
             }
 
             return FileRequester.GetFile(@"../../web/main-menu.html", "text/html");
+        }
+        [HttpGet("GetCoursesStyle")]
+        public ContentResult GetCoursesStyle()
+        {
+            return FileRequester.GetFile(@"../../web/styles/css/main-menu-page.css", "text/css");
+        }
+        [HttpGet("GetCoursesScript")]
+        public ContentResult GetCoursesScript()
+        {
+            return FileRequester.GetFile(@"../../web/scripts/courses.js", "text/js");
+        }
+        [HttpGet("GetCourseImage")]
+        public ContentResult GetCourseImage()
+        {
+            return FileRequester.GetFile(@"../../web/src/img/course-icon/image_1.svg", "image/svg+xml");
         }
         #endregion
         #endregion
