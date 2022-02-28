@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="active-place">
-                    <div class="active-place__tab active-tab">
+                    <div class="active-place__tab">
                         <h1 class="active-place__title title">Пройденные курсы повышения квалификации</h1>
 
                         <div class="course-list">
@@ -328,27 +328,50 @@
                         </div>
                     </div>
 
-                    <div class="active-place__tab">
+                    <div class="active-place__tab active-tab">
                         <h1 class="active-place__title title">Добавление пройденного курса</h1>
 
                         <form class="course-add">
                             <div class="user-data__input-form">
-                                <p class="user-data__login-title user-data__title">Название курса</p>
-                                <input class="user-data__login-input user-data__input" type="text" required placeholder="username">
+                                <p class="user-data__title">Название курса</p>
+                                <input class="user-data__input-text" type="text" required>
+                            </div>
+                            <div class="course-add__date-input">
+                                <div class="user-data__input-form">
+                                    <p class="user-data__title">Дата начала</p>
+                                    <input class="user-data__input-date" type="date" required>
+                                </div>
+                                <div class="user-data__input-form">
+                                    <p class="user-data__title">Дата окончания</p>
+                                    <input class="user-data__input-date" type="date" required>
+                                </div>
                             </div>
                             <div class="user-data__input-form">
-                                <p class="user-data__login-title user-data__title">Дата начала</p>
-                                <input class="user-data__login-input user-data__input" type="text" required placeholder="username">
+                                <p class="user-data__title">Место прохождения</p>
+                                <select class="user-data__input-select" id="education-place-selector">
+                                    <option>ГБПОУ МО “Серпуховский колледж”</option>
+                                    <option>ГБПОУ МО “Серпуховский колледж”</option>
+                                    <option>ГБПОУ МО “Серпуховский колледж”</option>
+                                    <option>ГБПОУ МО “Серпуховский колледж”</option>
+                                </select>
                             </div>
                             <div class="user-data__input-form">
-                                <p class="user-data__login-title user-data__title">Место прохождения</p>
-                                <input class="user-data__login-input user-data__input" type="text" required placeholder="username">
+                                <p class="user-data__title">Количество часов</p>
+                                <input class="user-data__input-text" type="text" required>
                             </div>
-                            <div class="user-data__input-form">
-                                <p class="user-data__login-title user-data__title">Количество часов</p>
-                                <input class="user-data__login-input user-data__input" type="text" required placeholder="username">
+
+                            <div class="course-add__drag-drop drag-drop">
+                                <div class="drag-drop__container">
+                                    <img class="drag-drop__image" src="./src/img/drag-drop/title.svg">
+                                    <p class="drag-drop__text">Перетащите файл свидетельства в эту область или</p>
+                                    <input class="drag-drop__file-select-button button" type="button" value="Загрузите файл">
+                                </div>
                             </div>
                         </form>
+
+                        <label class="course-add__submit" for="">
+                            <input class="course-add__submit-button button" type="button" value="Добавить">
+                        </label>
                     </div>
                 </div>
             </div>

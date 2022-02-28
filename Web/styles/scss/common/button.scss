@@ -1,0 +1,18 @@
+.button {
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+    background: #4359B2;
+    border: 3px solid #4359B2;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover {
+        filter: opacity(.85);
+    }
+    &:active {
+        filter: #091F8E;
+    }
+}

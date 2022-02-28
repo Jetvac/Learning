@@ -1,0 +1,46 @@
+.drag-drop {
+  width: 100%;
+  height: 250px;
+  border: 1px dashed #4359B2;
+  border-radius: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.drag-drop__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 355px;
+}
+
+.drag-drop__image {
+  width: 75px;
+  height: 75px;
+}
+
+.drag-drop__text {
+  text-align: center;
+  color: #091F8E;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.drag-drop__file-select-button {
+  width: 211px;
+  height: 43px;
+}

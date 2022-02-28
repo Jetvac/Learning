@@ -1,0 +1,22 @@
+.button {
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+  background: #4359B2;
+  border: 3px solid #4359B2;
+  border-radius: 30px;
+  cursor: pointer;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.button:hover {
+  -webkit-filter: opacity(0.85);
+          filter: opacity(0.85);
+}
+
+.button:active {
+  -webkit-filter: #091F8E;
+          filter: #091F8E;
+}

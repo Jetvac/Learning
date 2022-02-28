@@ -1,3 +1,130 @@
+.user-data__input-text, .user-data__input-date, .user-data__input-select {
+  width: 100%;
+  height: 50px;
+  border: 3px solid #4359B2;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 30px;
+  padding-left: 18px;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+  color: #4359B2;
+}
+
+.user-data {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 44px;
+}
+
+.user-data__input-form {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.user-data__title {
+  font-size: 16px;
+  line-height: 18px;
+  color: #091F8E;
+  margin-bottom: 6px;
+}
+
+.user-data__input-date {
+  padding-right: 16px;
+}
+
+.user-data__input-select {
+  padding-right: 16px;
+}
+
+.drag-drop {
+  width: 100%;
+  height: 250px;
+  border: 1px dashed #4359B2;
+  border-radius: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.drag-drop__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 355px;
+}
+
+.drag-drop__image {
+  width: 75px;
+  height: 75px;
+}
+
+.drag-drop__text {
+  text-align: center;
+  color: #091F8E;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.drag-drop__file-select-button {
+  width: 211px;
+  height: 43px;
+}
+
+.button {
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+  background: #4359B2;
+  border: 3px solid #4359B2;
+  border-radius: 30px;
+  cursor: pointer;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.button:hover {
+  -webkit-filter: opacity(0.85);
+          filter: opacity(0.85);
+}
+
+.button:active {
+  -webkit-filter: #091F8E;
+          filter: #091F8E;
+}
+
 body, html {
   padding: 0;
   margin: 0;
@@ -246,91 +373,8 @@ body, html {
   width: 200px;
 }
 
-.user-data {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 44px;
-}
-
-.user-data__input-form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.user-data__title {
-  font-size: 16px;
-  line-height: 18px;
-  color: #091F8E;
-  margin-bottom: 6px;
-}
-
-.user-data__input {
-  width: 100%;
-  height: 50px;
-  border: 3px solid #4359B2;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border-radius: 30px;
-  padding-left: 18px;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 23px;
-  color: #4359B2;
-}
-
-.user-data__submit {
-  width: 175px;
-  height: 43px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: 9px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  text-transform: uppercase;
-  background: #4359B2;
-  border: 3px solid #4359B2;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border-radius: 30px;
-  color: #FFFFFF;
-  font-weight: bold;
-  cursor: pointer;
-  -webkit-transition: all .3s;
-  transition: all .3s;
-}
-
-.user-data__submit:hover {
-  -webkit-filter: opacity(0.85);
-          filter: opacity(0.85);
-}
-
-.user-data__submit:active {
-  -webkit-filter: #091F8E;
-          filter: #091F8E;
-}
-
 .course-add {
+  margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -339,6 +383,37 @@ body, html {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 700px;
+  margin-top: 60px;
+}
+
+.course-add__date-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 74px;
+}
+
+.course-add__drag-drop {
+  margin-top: 90px;
+}
+
+.course-add__submit-button {
+  width: 224px;
+  height: 61px;
+}
+
+.course-add__submit {
+  margin-top: 66px;
+  margin-bottom: 35px;
+  margin-right: 95px;
+  margin-left: auto;
 }
 
 .active-tab {

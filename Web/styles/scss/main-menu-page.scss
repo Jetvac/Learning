@@ -1,3 +1,7 @@
+@import "../scss/common/user-data.scss";
+@import "../scss/common/drag-drop.scss";
+@import "../scss/common/button.scss";
+
 body, html {
     padding: 0;
     margin: 0;
@@ -173,70 +177,40 @@ body, html {
     }
 }
 
-.user-data {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 44px;
 
-    &__input-form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    &__title {
-        font-size: 16px;
-        line-height: 18px;
-        color: #091F8E;
-        margin-bottom: 6px;
-    }
-
-    &__input {
-        width: 100%;
-        height: 50px;
-        border: 3px solid #4359B2;
-        box-sizing: border-box;
-        border-radius: 30px;
-        padding-left: 18px;
-        font-weight: bold;
-        font-size: 20px;
-        line-height: 23px;
-        color: #4359B2;
-    }
-
-    &__submit {
-        width: 175px;
-        height: 43px;
-        display: flex;
-        margin-top: 9px;
-        align-items: center;
-        justify-content: center;
-        text-transform: uppercase;
-        background: #4359B2;
-        border: 3px solid #4359B2;
-        box-sizing: border-box;
-        border-radius: 30px;
-        color: #FFFFFF;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all .3s;
-
-        &:hover {
-            filter: opacity(.85);
-        }
-        &:active {
-            filter: #091F8E;
-        }
-    }
-}
 
 .course-add {
+    margin: auto;
     display: flex;
     flex-direction: column;
     width: 700px;
+    margin-top: 60px;
+
+    &__date-input {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 74px;
+    }
+
+    &__drag-drop {
+        margin-top: 90px;
+    }
+
+    &__submit-button {
+        width: 224px;
+        height: 61px;
+    }
+
+    &__submit {
+        margin-top: 66px;
+        margin-bottom: 35px;
+        margin-right: 95px;
+        margin-left: auto;
+    }
 }
 
 .active-tab {
     display: flex;
 }
+
