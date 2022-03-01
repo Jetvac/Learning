@@ -52,6 +52,9 @@ body, html {
 
     &__tab-menu {
         margin-top: 56px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
     }
 
     &__bottom-tab-menu {
@@ -89,8 +92,12 @@ body, html {
     box-sizing: border-box;
     border-radius: 20px;
 }
-.tab-button_color_white {
+.tab-button_active {
     background: white;
+
+    path {
+        fill: #4359B2;
+    }
 }
 
 .active-place {
