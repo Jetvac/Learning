@@ -153,6 +153,11 @@ namespace API.Controllers
         {
             return FileRequester.GetFile(@"../../web/scripts/courses.js", "text/js");
         }
+        [HttpGet("GetPageLogicScript")]
+        public ContentResult GetPageLogicScript()
+        {
+            return FileRequester.GetFile(@"../../web/scripts/page-logic.js", "text/js");
+        }
         [HttpGet("GetCourseImage")]
         public ContentResult GetCourseImage()
         {
