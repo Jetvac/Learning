@@ -78,6 +78,11 @@ namespace API.Controllers
 
             return completedCourses;
         }
+        [HttpGet("GetEducationOrganisation")]
+        public List<EducationOrganisation> GetEducationOrganisation()
+        {
+            return this.context.EducationOrganisations.ToList();
+        }
 
         #region Файлы сайта
         /// <summary>
