@@ -195,9 +195,21 @@ body, html {
   margin-top: 56px;
 }
 
-.menu-panel__logout {
+.menu-panel__bottom-tab-menu {
   margin-top: auto;
   margin-bottom: 55px;
+}
+
+.menu-panel__button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .menu-panel__logout-panel {
@@ -212,7 +224,7 @@ body, html {
           justify-content: center;
 }
 
-.menu-panel__logout-button {
+.menu-panel__tab {
   position: absolute;
   display: none;
 }
@@ -264,6 +276,28 @@ body, html {
   line-height: 23px;
 }
 
+.active-place__button-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: auto;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: 25px;
+}
+
+.active-place__bottom-button {
+  width: 224px;
+  height: 61px;
+}
+
 .active-place__tab {
   overflow: auto;
   display: none;
@@ -271,6 +305,7 @@ body, html {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  height: 100%;
 }
 
 .active-place__tab ::-webkit-scrollbar {
@@ -286,12 +321,10 @@ body, html {
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  height: 100%;
   padding: 50px 100px;
   gap: 50px;
 }
@@ -410,10 +443,19 @@ body, html {
 }
 
 .course-add__submit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
   margin-top: 66px;
   margin-bottom: 35px;
   margin-right: 95px;
-  margin-left: auto;
 }
 
 .active-tab {

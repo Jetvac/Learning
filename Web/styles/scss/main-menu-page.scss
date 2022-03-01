@@ -54,9 +54,15 @@ body, html {
         margin-top: 56px;
     }
 
-    &__logout {
+    &__bottom-tab-menu {
         margin-top: auto;
         margin-bottom: 55px;
+    }
+
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     &__logout-panel {
@@ -65,7 +71,7 @@ body, html {
         justify-content: center;
     }
     
-    &__logout-button {
+    &__tab {
         position: absolute;
         display: none;
     }
@@ -103,12 +109,30 @@ body, html {
         font-size: 20px;
         line-height: 23px;
     }
+
+    //bottom button list
+
+    &__button-list {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: auto;
+        margin-bottom: 40px;
+        margin-left: auto;
+        margin-right: 25px;
+    }
+
+    &__bottom-button {
+        width: 224px;
+        height: 61px;
+    }
 }
 
 .active-place__tab {
     overflow: auto;
     display: none;
     flex-direction: column;
+    height: 100%;
 
     ::-webkit-scrollbar {
         display:  none;
@@ -119,8 +143,8 @@ body, html {
     overflow-y: auto;
     display: flex;
     flex-flow: row wrap;
-    align-items: center;
     justify-content: center;
+    height: 100%;
     padding: 50px 100px;
     gap: 50px;
 
@@ -178,7 +202,7 @@ body, html {
 }
 
 
-
+// tabs
 .course-add {
     margin: auto;
     display: flex;
@@ -203,10 +227,12 @@ body, html {
     }
 
     &__submit {
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
         margin-top: 66px;
         margin-bottom: 35px;
         margin-right: 95px;
-        margin-left: auto;
     }
 }
 
