@@ -49,16 +49,16 @@
                         <form class="course-add">
                             <div class="user-data__input-form">
                                 <p class="user-data__title">Название курса</p>
-                                <input class="user-data__input-text" type="text" required>
+                                <input class="user-data__input-text" id="course-name" type="text" required>
                             </div>
                             <div class="course-add__date-input">
                                 <div class="user-data__input-form">
                                     <p class="user-data__title">Дата начала</p>
-                                    <input class="user-data__input-date" type="date" required>
+                                    <input class="user-data__input-date" id="startDate" type="date" required>
                                 </div>
                                 <div class="user-data__input-form">
                                     <p class="user-data__title">Дата окончания</p>
-                                    <input class="user-data__input-date" type="date" required>
+                                    <input class="user-data__input-date" id="endDate" type="date" required>
                                 </div>
                             </div>
                             <div class="user-data__input-form">
@@ -72,20 +72,20 @@
                             </div>
                             <div class="user-data__input-form">
                                 <p class="user-data__title">Количество часов</p>
-                                <input class="user-data__input-text" type="text" required>
+                                <input class="user-data__input-text" id="hoursCount" type="text" required>
                             </div>
 
                             <div class="course-add__drag-drop drag-drop">
                                 <div class="drag-drop__container">
                                     <img class="drag-drop__image" src="./src/img/drag-drop/title.svg">
                                     <p class="drag-drop__text">Перетащите файл свидетельства в эту область или</p>
-                                    <input class="drag-drop__file-select-button button" type="button" value="Загрузите файл">
+                                    <input class="drag-drop__file-select-button button" id="drag-and-drop-button" type="button" value="Загрузите файл">
                                 </div>
                             </div>
                         </form>
 
                         <label class="course-add__submit" for="">
-                            <input class="course-add__submit-button button" type="button" value="Добавить">
+                            <input class="course-add__submit-button button" id="course-add-button" type="button" value="Добавить">
                         </label>
                     </div>
                 </div>

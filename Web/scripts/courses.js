@@ -8,6 +8,7 @@ $(document).ready(function () {
         type: `GET`,
         contentType: `application/text; charset=utf-8`,
         success: function (response) {
+            // Добавление пройденных курсов
             Object.keys(response).forEach((index) => {
                 $('#course-list').append($(`<div class="course-item">
                 <div class="course-item__header">
