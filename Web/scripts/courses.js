@@ -37,4 +37,16 @@ $(document).ready(function () {
             });
         }
     });
+    $('#logout-button').click(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: `${IP}/logout`,
+            type: `GET`,
+            contentType: `application/text; charset=utf-8`,
+            success: function (response) {
+                document.location.replace(`${IP}/authorization`);
+            }
+        });
+    });
 });

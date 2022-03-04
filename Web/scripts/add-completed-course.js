@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var file;
+    let base64File;
 
     let dropField = document.getElementById('drag-n-drop-area');
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
@@ -32,7 +32,7 @@ $(document).ready(function () {
         reader.readAsDataURL(file)
         reader.onloadend = function () {
             console.log(reader.result);
-            file = reader.result;
+            base64File = reader.result;
         }
     }
 
@@ -45,4 +45,24 @@ $(document).ready(function () {
         var errorSpan = document.getElementById('upload-image-error');
         errorSpan.style.display = "none";
     }
+
+    $('#course-add-button').click(function (e) {
+        e.preventDefault();
+
+        var courseName = $('#course-name').val();
+        var startDate = $('#start-date').val();
+        var endDate = $('#end-date').val();
+        var educationalOrganisationID = $('#education-place-selector').val();
+        var hoursCount = $('#hours-count').val();
+
+        $.ajax({
+            url: `${IP}/AddCompletedCourse`,
+            type: `POST`,
+            contentType: `application/text; charset=utf-8`,
+            data: `${courseName}\n${startDate}\n${endDate}\n${educationalOrganisationID}\n${hoursCount}\n${base64File}`,
+            success: function (response) {
+                console.log(response);
+            }
+        });
+    });
 });

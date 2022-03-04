@@ -83,7 +83,68 @@ namespace API.Controllers
         {
             return this.context.EducationOrganisations.ToList();
         }
+        [HttpPost("AddCompletedCourse")]
+        public bool AddCompletedCourse()
+        {
+            if (!Security.CheckToken(this.Request.Cookies))
+            {
+                return false;
+            }
 
+            string? login = this.Request.Cookies["login"];
+            User user = this.context.Users.Where(u => u.Login == login).First();
+            Employee employee = this.context.Employees.Where(e => e.EmployeeId == user.EmployeeId).First();
+
+            string[] requestBody = RequestReader.GetData(this.Request.Body).ToArray();
+
+            if (requestBody.Length < 5 || requestBody.Length >= 7)
+            {
+                return false;
+            }
+
+            try
+            {
+                string courseName = requestBody[0];
+                DateTime startDate = DateTime.Parse(requestBody[1]);
+                DateTime endDate = DateTime.Parse(requestBody[2]);
+
+                if (startDate > endDate)
+                {
+                    return false;
+                }
+
+                int educationOrganisationID = Int32.Parse(requestBody[3]);
+                int hoursCount = Int32.Parse(requestBody[4]);
+                byte[]? certificate = null;
+
+                if (requestBody.Length == 6)
+                {
+                    certificate = System.Convert.FromBase64String(requestBody[5].Replace("data:image/png;base64,", ""));
+                }
+
+                CompletedCourse course = new CompletedCourse()
+                {
+                    Employee = employee,
+                    EmployeeId = user.EmployeeId,
+                    CourseId = this.context.CompletedCourses.Where(c => c.EmployeeId == user.EmployeeId).Select(c => c.CourseId).Max() + 1,
+                    CourseName = courseName,
+                    CourseStartDate = startDate,
+                    CourseEndDate = endDate,
+                    EducationOrganisationId = educationOrganisationID,
+                    HoursCount = hoursCount,
+                    Certificate = certificate,
+                };
+
+                this.context.CompletedCourses.Add(course);
+                this.context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
         #region Файлы сайта
         /// <summary>
         /// Получение файла скрипта библиотеки JQuery
@@ -93,6 +154,11 @@ namespace API.Controllers
         public ContentResult GetJQuery()
         {
             return FileRequester.GetFile(@"../../web/scripts/jquery-3.6.0.min.js", "text/js");
+        }
+        [HttpGet("GetDragNDropScript")]
+        public ContentResult GetDragNDropScript()
+        {
+            return FileRequester.GetFile(@"../../web/scripts/drag-drop.js", "text/js");
         }
         #region Страница Авторизации
         /// <summary>
@@ -127,11 +193,23 @@ namespace API.Controllers
             return FileRequester.GetFile(@"../../web/scripts/authorization.js", "text/js");
         }
         #endregion
-        #region Страница Просмотра пройденных курсов
+        #region Главная страница
         /// <summary>
         /// Получение HTML файла страницы Просмотра пройденных курсов
         /// </summary>
         /// <returns></returns>
+        [HttpGet("Logout")]
+        public void Logout()
+        {            
+            if (Security.CheckToken(this.Request.Cookies))
+            {
+                this.Response.Cookies.Delete("login");
+                this.Response.Cookies.Delete("token");
+            }
+
+            this.Request.HttpContext.Request.Path = "/authorization";
+            //this.Response.Redirect($"/authorization");
+        }
         [HttpGet("Courses")]
         public ContentResult Courses()
         {
@@ -157,6 +235,11 @@ namespace API.Controllers
         public ContentResult GetPageLogicScript()
         {
             return FileRequester.GetFile(@"../../web/scripts/page-logic.js", "text/js");
+        }
+        [HttpGet("GetAddCompletedCoursePageScript")]
+        public ContentResult GetAddPageScript()
+        {
+            return FileRequester.GetFile(@"../../web/scripts/add-completed-course.js", "text/js");
         }
         [HttpGet("GetCourseImage")]
         public ContentResult GetCourseImage()
