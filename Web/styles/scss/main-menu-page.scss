@@ -110,7 +110,8 @@ body, html {
     background: #FFFFFF;
     flex-direction: column;
     border-radius: 50px;   
-    width: 100%;
+    width: calc(100% - 200px);
+    max-width: -webkit-fill-available;
     height: auto;
     margin: 40px 160px 40px 280px;
 
@@ -161,13 +162,6 @@ body, html {
             height: 50px;
         }
     }
-
-    &__table {
-        background: #FFFFFF;
-        border: 2px solid #4359B2;
-        box-sizing: border-box;
-        border-radius: 40px;
-    }
 }
 
 .active-place__tab {
@@ -179,6 +173,13 @@ body, html {
     ::-webkit-scrollbar {
         display:  none;
     }
+}
+
+.active-place__tab_scrollbar_visible {
+    overflow: auto;
+    display: none;
+    flex-direction: column;
+    height: 100%;
 }
 
 .course-list {
@@ -282,3 +283,65 @@ body, html {
     display: flex;
 }
 
+.active-place {
+    &__chart {
+        margin: 40px 60px;
+        padding: 5px;
+        max-width: 100%;
+        overflow-x: auto;
+        transform: rotate(180deg);
+    }
+
+
+    .text {
+        font-size: 20px;
+        line-height: 23px;
+        color: #091F8E;
+    }
+
+    td {
+        min-width: 150px;
+        max-width: 150px;
+        border: 2px solid #4359B2;
+        border-collapse: collapse;
+    }
+    table {
+        border-collapse: collapse;
+        border-radius: 30px;
+        border-style: hidden; /* hide standard table (collapsed) border */
+        box-shadow: 0 0 0 2px #4359B2; /* this draws the table border  */ 
+    }
+
+    table tr td:first-child {
+        min-width: 400px;
+        text-align: left;
+    }
+
+    &__table {
+        transform: rotate(180deg);
+    }
+
+    &__table-data {
+        p {
+            margin: 0;
+        }
+        
+        width: 160px;
+        padding: 15px;
+        text-align: center;
+    }
+
+    &__table-cell {
+        width: 160px;
+    }
+
+    &__table-data_color_blue {
+        background: #091F8E;
+        width: 100%;
+        height: 54px;
+    }
+}
+
+.table-free-space {
+    height: 100%;
+}

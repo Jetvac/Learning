@@ -280,7 +280,8 @@ body, html {
       -ms-flex-direction: column;
           flex-direction: column;
   border-radius: 50px;
-  width: 100%;
+  width: calc(100% - 200px);
+  max-width: -webkit-fill-available;
   height: auto;
   margin: 40px 160px 40px 280px;
 }
@@ -346,14 +347,6 @@ body, html {
   height: 50px;
 }
 
-.active-place__table {
-  background: #FFFFFF;
-  border: 2px solid #4359B2;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border-radius: 40px;
-}
-
 .active-place__tab {
   overflow: auto;
   display: none;
@@ -366,6 +359,16 @@ body, html {
 
 .active-place__tab ::-webkit-scrollbar {
   display: none;
+}
+
+.active-place__tab_scrollbar_visible {
+  overflow: auto;
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
 }
 
 .course-list {
@@ -518,4 +521,70 @@ body, html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.active-place__chart {
+  margin: 40px 60px;
+  padding: 5px;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.active-place .text {
+  font-size: 20px;
+  line-height: 23px;
+  color: #091F8E;
+}
+
+.active-place td {
+  min-width: 150px;
+  max-width: 150px;
+  border: 2px solid #4359B2;
+  border-collapse: collapse;
+}
+
+.active-place table {
+  border-collapse: collapse;
+  border-radius: 30px;
+  border-style: hidden;
+  /* hide standard table (collapsed) border */
+  -webkit-box-shadow: 0 0 0 2px #4359B2;
+          box-shadow: 0 0 0 2px #4359B2;
+  /* this draws the table border  */
+}
+
+.active-place table tr td:first-child {
+  min-width: 400px;
+  text-align: left;
+}
+
+.active-place__table {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.active-place__table-data {
+  width: 160px;
+  padding: 15px;
+  text-align: center;
+}
+
+.active-place__table-data p {
+  margin: 0;
+}
+
+.active-place__table-cell {
+  width: 160px;
+}
+
+.active-place__table-data_color_blue {
+  background: #091F8E;
+  width: 100%;
+  height: 54px;
+}
+
+.table-free-space {
+  height: 100%;
 }
