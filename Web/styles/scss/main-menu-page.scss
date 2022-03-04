@@ -52,6 +52,14 @@ body, html {
 
     &__tab-menu {
         margin-top: 56px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    &__date-svg {
+        width: 50px;
+        height: 50px;
     }
 
     &__bottom-tab-menu {
@@ -89,8 +97,12 @@ body, html {
     box-sizing: border-box;
     border-radius: 20px;
 }
-.tab-button_color_white {
+.tab-button_active {
     background: white;
+
+    path {
+        fill: #4359B2;
+    }
 }
 
 .active-place {
@@ -125,6 +137,36 @@ body, html {
     &__bottom-button {
         width: 224px;
         height: 61px;
+    }
+
+    //chart-panel
+    &__form {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+
+        .active-place__text {
+            font-family: Arial;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 25px;
+            line-height: 29px;
+            color: #4359B2;
+        }
+
+        .user-data__input-form {
+            width: 180px;
+            height: 50px;
+        }
+    }
+
+    &__table {
+        background: #FFFFFF;
+        border: 2px solid #4359B2;
+        box-sizing: border-box;
+        border-radius: 40px;
     }
 }
 
