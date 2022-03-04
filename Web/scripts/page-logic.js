@@ -23,10 +23,11 @@ $(document).ready(function () {
         setButtonActive('courses-button');
         openTab('course-panel');
     });
-    $('#courses-button-1').click(function(e) {
-        setButtonActive('courses-button-1');
-    });
     $('#add-course__navigate-button').click(function(e) {
         openTab('course-add-panel');
+    });
+    $('#chart-button').click(function(e) {
+        setButtonActive('chart-button');
+        openTab('chart-panel');
     });
 });
